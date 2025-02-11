@@ -1,15 +1,16 @@
-import collections
+import sys
 
-a = str(input()).upper()
-check = []
-for x in range (0, len(a)) :
-    check.append(a[x])
+S = sys.stdin.readline().rstrip()
+D = dict()
 
-if len(check) == 1 :
-    print(check[0].upper())
-    
-else :
-    if collections.Counter(check).most_common(2)[0][1] == collections.Counter(check).most_common(2)[1][1]:
-        print("?")
-    else : 
-        print(collections.Counter(check).most_common(1)[0][0])
+for word in S:
+    D[word.upper()] = D.get(word.upper(), 0) + 1
+else:
+    if len(D) == 1:
+        print(list(D.items())[0][0])
+    else:
+        D = sorted(D.items(), key=lambda x: x[1], reverse=True)[:2]
+        if list(D[0])[1] == list(D[1])[1]:
+            print('?')
+        else:
+            print(list(D[0])[0])

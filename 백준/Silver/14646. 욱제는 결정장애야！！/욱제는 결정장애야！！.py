@@ -10,7 +10,5 @@ for x in L:
         visited[x] = 1
         M += 1
         if R < M: R = M
-    else:
-        visited[x] = 0
-        M -= 1
+    else: M -= 1
 print(R)
